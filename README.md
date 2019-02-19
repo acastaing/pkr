@@ -3,12 +3,47 @@
 [![Build Status](https://travis-ci.org/altairengineering/pkr.svg?branch=master)](https://travis-ci.org/altairengineering/pkr)
 
 # Introduction
-This repository provide a tool which allows generating docker images using templates.
+PKR is a tool which aims to generate and manage container environments.
+
+It generates :
+- Dockerfiles 
+- container's context
+- service's configuration
+
+It supports :
+- docker-compose
+- K8s
+- minikube (soon) 
 
 `pkr` comes from `pocker`, which was the first name of this software.
 
 
 # How to use pkr ?
+
+## To bundle a software with pkr
+pkr aims to generate container environment for micro service.
+
+Each software using PKR needs to describe its environments in the software repository.
+To describe them the software needs :
+- spec files for configuration generation
+- Dockerfiles templates
+- environments descriptions (ie dev, CI, production, ...)
+- docker-compose template
+
+...
+
+## To use pkr 
+Each environment is described into a kard.
+
+A kard is a directory containing :
+
+- meta.yml : an abstract description of the environment (password, configuration parameters, scalability, ...)
+- data : a directory mounted into few containers (databases) It also contains the ssh_keys used during appliance deployment
+- docker-context : it contains the docker files and running configuration files 
+
+All kards are stored into kard directory. 
+
+you can use pkr on your system or inside a container.
 
 To learn how to use pkr, you can have a look at our examples [here](https://github.com/altairengineering/pkr-demo).
 
